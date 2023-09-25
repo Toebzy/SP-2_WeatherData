@@ -32,14 +32,15 @@ public class WeatherScraper
             document = Jsoup.connect(url).get();
             Elements elements = document.select(".daily-weather-list-item");
             elements.forEach(el -> {
-                String date, maxTemp, minTemp, wind, rain;
+                double maxTemp, minTemp;
+                String date, wind, rain;
                 date = el.select("h3 time").attr("datetime");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate localDate = LocalDate.parse(date, formatter);
-                maxTemp = el.select(".min-max-temperature__max").text();
-                minTemp = el.select(".min-max-temperature__min").text();
-                rain = el.select(".Precipitation-module__main-sU6qN").text();
-                wind = el.select(".daily-weather-list-item__wind").text();
+                maxTemp = Double.parseDouble(el.select(".min-max-temperature__max").text().replace("°",""));
+                minTemp = Double.parseDouble(el.select(".min-max-temperature__min").text().replace("°", ""));
+                rain = el.select(".Precipitation-module__main-sU6qN").text().replace("Nedbør ", "");
+                wind = el.select(".daily-weather-list-item__wind").text().replace("Vind:", "");
                 WeatherDTO weatherDTO = WeatherDTO.builder()
                         .date(localDate)
                         .maxTemp(maxTemp)

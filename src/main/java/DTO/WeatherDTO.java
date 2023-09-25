@@ -13,8 +13,8 @@ import java.time.LocalDate;
 public class WeatherDTO
 {
     LocalDate date;
-    String maxTemp;
-    String minTemp;
+    double maxTemp;
+    double minTemp;
     String wind;
     String rain;
 }
