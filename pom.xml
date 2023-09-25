@@ -22,6 +22,12 @@
     <dependencies>
 
         <!--  DB    -->
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.16.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>
