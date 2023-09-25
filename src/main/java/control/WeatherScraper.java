@@ -32,7 +32,6 @@ public class WeatherScraper
             document = Jsoup.connect(url).get();
             Elements elements = document.select(".daily-weather-list-item");
             elements.forEach(el -> {
-
                 String date, maxTemp, minTemp, wind, rain;
                 date = el.select("h3 time").attr("datetime");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
