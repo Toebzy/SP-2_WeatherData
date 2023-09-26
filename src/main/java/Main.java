@@ -1,4 +1,5 @@
 import DTO.WeatherDTO;
+import control.WeatherApiReader;
 import control.WeatherScraper;
 import java.util.List;
 

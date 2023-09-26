@@ -50,6 +50,9 @@ public class WeatherScraper
                         .build();
                 weatherDTOS.add(weatherDTO);
             });
+            WeatherApiReader weatherApiReader = new WeatherApiReader();
+            weatherDTOS.get(0).setSky(weatherApiReader.sky);
+            weatherDTOS.get(0).setHumidity(weatherApiReader.humidity);
             return weatherDTOS;
         } catch (IOException e)
         {

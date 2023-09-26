@@ -17,4 +17,6 @@ public class WeatherDTO
     double minTemp;
     String wind;
     String rain;
+    String sky;
+    int humidity;
 }
