@@ -1,5 +1,9 @@
 package DTO;
 
+import entity.WeatherEntity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -10,8 +14,10 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @ToString
+@Entity
 public class WeatherDTO
 {
+    @Id
     LocalDate date;
     double maxTemp;
     double minTemp;
@@ -19,4 +25,6 @@ public class WeatherDTO
     String rain;
     String sky;
     int humidity;
+    @ManyToOne
+    private WeatherEntity weatherEntity;
 }
