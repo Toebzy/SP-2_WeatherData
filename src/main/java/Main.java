@@ -10,9 +10,9 @@ import java.util.List;
 
 public class Main
 {
-    static EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("weatherdatabase");
     public static void main(String[] args)
     {
+        EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("weatherdatabase");
         WeatherScraper weatherScraper = new WeatherScraper();
         List<WeatherDTO> weatherDTOS = weatherScraper.scrape();
         weatherDTOS.forEach(System.out::println);
@@ -25,5 +25,6 @@ public class Main
             em.persist(weatherEntity);
             em.getTransaction().commit();
         }
+        System.exit(0);
     }
 }
