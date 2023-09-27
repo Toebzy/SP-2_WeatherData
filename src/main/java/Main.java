@@ -16,12 +16,17 @@ public class Main
         WeatherScraper weatherScraper = new WeatherScraper();
         List<WeatherDTO> weatherDTOS = weatherScraper.scrape();
         weatherDTOS.forEach(System.out::println);
-        WeatherEntity weatherEntity = new WeatherEntity(2800, "Kongens Lyngby");
+        WeatherEntity weatherEntity = new WeatherEntity(2900, "Kongens Lyngby");
         weatherDTOS.forEach(weatherEntity::addWeatherDTO);
         weatherEntity.getWeatherDTOS().forEach(System.out::println);
         BigDAO<WeatherEntity> weatherEntityBigDAO = new BigDAO<>();
-        weatherEntityBigDAO.save(weatherEntity);
-        System.exit(0);
+        weatherEntity.setName("Lyngby Kongens");
+        weatherEntityBigDAO.saveWeather(weatherEntity);
+        weatherEntityBigDAO.update(weatherEntity);
+        System.out.println(weatherEntityBigDAO.getHighestTemp());
+        System.out.println(weatherEntityBigDAO.getLowestTemp());
+        System.out.println(weatherEntityBigDAO.getAllWeather());
 
+        System.exit(0);
     }
 }

@@ -30,7 +30,6 @@ public class WeatherEntity
         this.zipCode = zipCode;
         this.name = name;
     }
-
     @OneToMany(mappedBy = "weatherEntity", cascade = CascadeType.ALL)
     private Set<WeatherDTO> weatherDTOS = new HashSet<>();
 
@@ -43,4 +42,3 @@ public class WeatherEntity
         }
     }
 }
-

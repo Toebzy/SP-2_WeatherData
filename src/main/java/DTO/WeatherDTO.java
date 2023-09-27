@@ -1,8 +1,9 @@
 package DTO;
-
+import java.io.Serializable;
 import entity.WeatherEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
 
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 @Entity
+@IdClass(WeatherDTO.WeatherDTOId.class)
 public class WeatherDTO
 {
     @Id
@@ -25,6 +27,15 @@ public class WeatherDTO
     String rain;
     String sky;
     int humidity;
-    @ManyToOne
+    @ManyToOne @Id
     private WeatherEntity weatherEntity;
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @EqualsAndHashCode
+    public static class WeatherDTOId implements Serializable
+    {
+        private LocalDate date;
+        private int weatherEntity;
+    }
 }
