@@ -1,4 +1,5 @@
 import DTO.WeatherDTO;
+import Dao.BigDAO;
 import config.HibernateConfig;
 import control.WeatherApiReader;
 import control.WeatherScraper;
@@ -12,19 +13,15 @@ public class Main
 {
     public static void main(String[] args)
     {
-        EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryConfig("weatherdatabase");
         WeatherScraper weatherScraper = new WeatherScraper();
         List<WeatherDTO> weatherDTOS = weatherScraper.scrape();
         weatherDTOS.forEach(System.out::println);
         WeatherEntity weatherEntity = new WeatherEntity(2800, "Kongens Lyngby");
         weatherDTOS.forEach(weatherEntity::addWeatherDTO);
         weatherEntity.getWeatherDTOS().forEach(System.out::println);
-        try(EntityManager em = emf.createEntityManager())
-        {
-            em.getTransaction().begin();
-            em.persist(weatherEntity);
-            em.getTransaction().commit();
-        }
+        BigDAO<WeatherEntity> weatherEntityBigDAO = new BigDAO<>();
+        weatherEntityBigDAO.save(weatherEntity);
         System.exit(0);
+
     }
 }
